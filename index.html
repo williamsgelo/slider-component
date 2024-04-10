@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Slider</title>
+  </head>
+  <body>
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img
+            src="https://printingsa.org/storage/app/media/2024-04/PrintingSA-CapeTownExpo_1220x530.jpg"
+            alt="Image 1"
+          />
+        </div>
+        <div class="slide">
+          <img src="images/andrew-neel.jpg" alt="Image 2" />
+        </div>
+        <div class="slide">
+          <img src="images/brooke-cagle.jpg" alt="Image 3" />
+        </div>
+      </div>
+      <div class="prev" onclick="moveSlide(-1)">&#10094;</div>
+      <div class="next" onclick="moveSlide(1)">&#10095;</div>
+    </div>
+
+    <script>
+      let slideIndex = 0;
+
+      function showSlides() {
+        const slides = document.querySelectorAll(".slide");
+        if (slideIndex >= slides.length) {
+          slideIndex = 0;
+        } else if (slideIndex < 0) {
+          slideIndex = slides.length - 1;
+        }
+
+        slides.forEach((slide) => {
+          slide.style.transform = `translateX(-${slideIndex * 100}%)`;
+        });
+      }
+
+      function moveSlide(n) {
+        slideIndex += n;
+        showSlides();
+      }
+
+      setInterval(() => {
+        moveSlide(1);
+      }, 3000); // Change slide every 3 seconds
+    </script>
+  </body>
+</html>
